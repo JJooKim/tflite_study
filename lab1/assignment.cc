@@ -172,7 +172,21 @@ int main(int argc, char* argv[]) {
     for(int i=0; i<10; ++i)
       printf("label : %d %.3f% \n", i, output_tensor[i] * 100);
 
-    int predict_num = std::distance(output_tensor.begin(), std::max_element(output_tensor.begin(), output_tensor.end()));
+    // int predict_num = std::distance(output_tensor.begin(), std::max_element(output_tensor.begin(), output_tensor.end()));
+
+
+    int predict_num = 0;
+    float max_value = output_tensor[0];
+
+    // Iterate over the elements to find the maximum value and its index
+    for (int i = 1; i < 10; ++i) {
+      if (output_tensor[i] > max_value) {
+          max_value = output_tensor[i];
+          predict_num = i;
+      }
+    } 
+
+
 
 
     clear_pin();
