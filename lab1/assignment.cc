@@ -184,10 +184,10 @@ int main(int argc, char* argv[]) {
 
     clear_pin();
     set_pin(predict_num);
-    delay(500);
+    delay(1000);
     
-    if (cv::waitKey(25) >= 0)
-        break;
+    // if (cv::waitKey(25) >= 0)
+    //     break;
 
 
   }
