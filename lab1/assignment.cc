@@ -156,7 +156,7 @@ int main(int argc, char* argv[]) {
     // Run inference
     TFLITE_MINIMAL_CHECK(interpreter->Invoke() == kTfLiteOk); // Do inference
     printf("\n\n=== Post-invoke Interpreter State ===\n");
-    tflite::PrintInterpreterState(interpreter.get());
+    //tflite::PrintInterpreterState(interpreter.get());
 
     // Read output buffers
     // TODO(user): Insert getting data out code.
@@ -184,8 +184,8 @@ int main(int argc, char* argv[]) {
 
 
     clear_pin();
-    set_pin(predict_num);
-    delay(1000);
+    set_pin(1);
+    delay(25);
     
     if (cv::waitKey(25) >= 0)
         break;
