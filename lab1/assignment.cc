@@ -184,7 +184,7 @@ int main(int argc, char* argv[]) {
 
 
     clear_pin();
-    set_pin(1);
+    set_pin(5);
     delay(25);
     
     if (cv::waitKey(25) >= 0)
