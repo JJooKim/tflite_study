@@ -84,13 +84,6 @@ int main(int argc, char* argv[]) {
   TFLITE_MINIMAL_CHECK(model != nullptr);
 
 
-  std::unique_ptr<tflite::FlatBufferModel> model = 
-      tflite::FlatBufferModel::BuildFromFile(filename);
-  
-  tflite::ops::builtin::BuiltinOpResolver resolver;
-  tflite::InterpreterBuilder build(*model, resolver);
-  std::unique_ptr<tflite::Interpreter> interpreter;
-  builder(&interpreter);
 
 
   
