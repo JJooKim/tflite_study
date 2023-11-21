@@ -128,6 +128,7 @@ int main(int argc, char* argv[]) {
         break;
     }
 
+    cv::imshow("Video feed", frame);
     // Resize the frame to 28x28
     cv::resize(frame, frame, cv::Size(28, 28));
 
