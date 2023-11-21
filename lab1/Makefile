@@ -5,7 +5,7 @@ LDFLAGS := -pthread -ltensorflow-lite -lflatbuffers -ldl
 LDPATH := -L${HOME}/tensorflow/tensorflow/lite/tools/make/gen/bbb_armv7l/lib\
 	  -L${HOME}/tensorflow/tensorflow/lite/tools/make/downloads/flatbuffers/build
 
-SRCS := tflite_sample.cc
+SRCS := assignment.cc
 OBJS := $(SRCS:.cc=.o)
 EXEC := tflite_sample
 
