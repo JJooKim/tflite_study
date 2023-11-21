@@ -59,7 +59,7 @@ void read_Mnist(string filename, vector<vector<float>>& input_vec) {
 		int number_of_images = 0;
 		int n_rows = 0;
 		int n_cols = 0;
-		file.read((char*)& magic_number, sizeof(magic_number));
+		file.read((char*)& magic_number, sizeof(magic_number)); // magic number 의 시작 주소에 
 		magic_number = ReverseInt(magic_number);
 		file.read((char*)& number_of_images, sizeof(number_of_images));
 		number_of_images = ReverseInt(number_of_images);
