@@ -25,10 +25,10 @@
 #define PDP 0
 
 // for anode display
-char nums[10] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x90};
+char nums[10] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8, 0x80, 0x98};
 
 // WPi pin numbers
-char pins[8] = {PA, PB, PC, PD, PF, PG, PDP};
+char pins[8] = {PA, PB, PC, PD, PE, PF, PG, PDP};
 
 void clear_pin ()
 {
@@ -124,6 +124,7 @@ int main(int argc, char* argv[]) {
   {
     cv::imshow("Video feed", frame);
 
+    ++frame_num; 
     if (frame.empty()) {
           std::cerr << "Error: Empty frame." << std::endl;
           break;
