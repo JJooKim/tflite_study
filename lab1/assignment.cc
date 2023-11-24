@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
         // Print the raw pixel values
     for (int i = 0; i < frame.rows; ++i) {
         for (int j = 0; j < frame.cols; ++j) {
-            std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " ";
+            std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " "<<i<<j;
         }
         std::cout << std::endl;
     }
