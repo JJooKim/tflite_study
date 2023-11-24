@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
 
   cv::Mat frame;
 
-  vector<vector<int>> input_vector(28, vector<int>(28, 0));
+  vector<vector<float>> input_vector(28, vector<float>(28, 0));
 
   int frame_num = 0;
 
@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) {
     cv::resize(frame, frame, cv::Size(28, 28));
     for (int i = 0; i < frame.rows; ++i) {
       for (int j = 0; j < frame.cols; ++j) {
-          input_vector[i][j] = frame.at<int>(i, j);
+          input_vector[i][j] = static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]);
       }
     }
 
@@ -141,7 +141,6 @@ int main(int argc, char* argv[]) {
     }
 
     
-        // Print the raw pixel values
     // for (int i = 0; i < frame.rows; ++i) {
     //     for (int j = 0; j < frame.cols; ++j) {
     //         std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " ";
