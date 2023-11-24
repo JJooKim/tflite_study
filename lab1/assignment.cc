@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) {
   {
     cv::Mat frame;
     cap >> frame;
-    cv::imshow("Video feed", frame);
+    // cv::imshow("Video feed", frame);
 
     // Convert the frame to grayscale
     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
@@ -137,8 +137,8 @@ int main(int argc, char* argv[]) {
     cv::resize(frame, frame, cv::Size(28, 28));
     cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
 
-    // Display the frame
-    cv::imshow("Camera Feed", frame);
+    // // Display the frame
+    // cv::imshow("Camera Feed", frame);
 
     ++frame_num; 
     if (frame.empty()) {
