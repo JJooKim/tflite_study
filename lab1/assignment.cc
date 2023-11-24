@@ -127,11 +127,28 @@ int main(int argc, char* argv[]) {
   { 
     cv::resize(frame, frame, cv::Size(28, 28));
         // Print the raw pixel values
+    // for (int i = 0; i < frame.rows; ++i) {
+    //     for (int j = 0; j < frame.cols; ++j) {
+    //         std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " ";
+    //     }
+    //     std::cout << std::endl;
+
+
     for (int i = 0; i < frame.rows; ++i) {
         for (int j = 0; j < frame.cols; ++j) {
-            std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " ";
+            input_vector[i][j] = frame.at<int>(i, j);
         }
-        std::cout << std::endl;
+    }
+
+    std::cout << "Input MNIST Image" << "\n";
+    for(int i=0; i<28; ++i){
+      for(int j=0; j<28; ++j){
+        printf("%3d ", (int)input_vector[i][j]);
+      }
+      printf("\n");
+    }
+
+
     }
     // cv::imshow("Video feed", frame);
 
@@ -196,19 +213,19 @@ int main(int argc, char* argv[]) {
     
 
 
-      for (int i = 0; i < frame.rows; ++i) {
-          for (int j = 0; j < frame.cols; ++j) {
-              input_vector[i][j] = frame.at<int>(i, j);
-          }
-      }
+      // for (int i = 0; i < frame.rows; ++i) {
+      //     for (int j = 0; j < frame.cols; ++j) {
+      //         input_vector[i][j] = frame.at<int>(i, j);
+      //     }
+      // }
 
-      std::cout << "Input MNIST Image" << "\n";
-      for(int i=0; i<28; ++i){
-        for(int j=0; j<28; ++j){
-          printf("%3d ", (int)input_vector[i][j]);
-        }
-        printf("\n");
-      }
+      // std::cout << "Input MNIST Image" << "\n";
+      // for(int i=0; i<28; ++i){
+      //   for(int j=0; j<28; ++j){
+      //     printf("%3d ", (int)input_vector[i][j]);
+      //   }
+      //   printf("\n");
+      // }
 
 
       // Fill input buffers
