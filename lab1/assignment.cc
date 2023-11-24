@@ -126,6 +126,13 @@ int main(int argc, char* argv[]) {
   while (video.read(frame))
   { 
 
+        // Print the raw pixel values
+    for (int i = 0; i < frame.rows; ++i) {
+        for (int j = 0; j < frame.cols; ++j) {
+            std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " ";
+        }
+        std::cout << std::endl;
+    }
     // cv::imshow("Video feed", frame);
 
     // for (int i = 0; i < frame.rows; ++i) {
@@ -177,10 +184,10 @@ int main(int argc, char* argv[]) {
 
       // cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
       
-    cv::resize(frame, frame, cv::Size(28, 28));
+      cv::resize(frame, frame, cv::Size(28, 28));
 
       // //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      // cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
+      cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
       // // // Convert the frame to grayscale (if not already)
       // // if (frame.channels() > 1) {
       // //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
