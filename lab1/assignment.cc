@@ -132,13 +132,15 @@ int main(int argc, char* argv[]) {
 
     if (frame_num % 100 == 0) {
       // Resize the frame to 28x28
-      cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
+      
       cv::resize(frame, frame, cv::Size(28, 28));
 
-      // Convert the frame to grayscale (if not already)
-      if (frame.channels() > 1) {
-          cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      }
+      cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
+      // // Convert the frame to grayscale (if not already)
+      // if (frame.channels() > 1) {
+      //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      // }
 
       for (int i = 0; i < frame.rows; ++i) {
           for (int j = 0; j < frame.cols; ++j) {
@@ -146,13 +148,13 @@ int main(int argc, char* argv[]) {
           }
       }
 
-        std::cout << "Input MNIST Image" << "\n";
-        for(int i=0; i<28; ++i){
-          for(int j=0; j<28; ++j){
-            printf("%3d ", (int)input_vector[i][j]);
-          }
-          printf("\n");
+      std::cout << "Input MNIST Image" << "\n";
+      for(int i=0; i<28; ++i){
+        for(int j=0; j<28; ++j){
+          printf("%3d ", (int)input_vector[i][j]);
         }
+        printf("\n");
+      }
 
 
       // Fill input buffers
