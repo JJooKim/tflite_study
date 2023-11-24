@@ -136,9 +136,17 @@ int main(int argc, char* argv[]) {
     // Resize the frame to 28x28
     cv::resize(frame, frame, cv::Size(28, 28));
 //    cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX, CV_8UC1);
+
     double minVal, maxVal;
     cv::minMaxLoc(frame, &minVal, &maxVal);
-    frame = 255 * (frame - minVal) / (maxVal - minVal);
+
+    for (int i = 0; i < frame.rows; ++i) {
+        for (int j = 0; j < frame.cols; ++j) {
+            frame.at<uchar>(i, j) = static_cast<uchar>(255.0 * (frame.at<uchar>(i, j) - minVal) / (maxVal - minVal));
+        }
+    }
+
+
 
     // // Display the frame
     // cv::imshow("Camera Feed", frame);
