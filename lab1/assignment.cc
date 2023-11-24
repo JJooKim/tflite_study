@@ -135,7 +135,7 @@ int main(int argc, char* argv[]) {
       
       cv::resize(frame, frame, cv::Size(28, 28));
 
-      cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
       cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
       // // Convert the frame to grayscale (if not already)
       // if (frame.channels() > 1) {
