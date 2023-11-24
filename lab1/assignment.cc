@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
 
   cv::Mat frame;
 
-  vector<vector<float>> input_vector(28, vector<float>(28, 0));
+  vector<vector<int>> input_vector(28, vector<int>(28, 0));
 
   int frame_num = 0;
 
