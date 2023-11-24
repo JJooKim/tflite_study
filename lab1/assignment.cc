@@ -132,6 +132,7 @@ int main(int argc, char* argv[]) {
 
     if (frame_num % 100 == 0) {
       // Resize the frame to 28x28
+      cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
       cv::resize(frame, frame, cv::Size(28, 28));
 
       // Convert the frame to grayscale (if not already)
