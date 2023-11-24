@@ -135,7 +135,7 @@ int main(int argc, char* argv[]) {
 
     // Resize the frame to 28x28
     cv::resize(frame, frame, cv::Size(28, 28));
-    cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
+    cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX, CV_8UC1);
 
     // // Display the frame
     // cv::imshow("Camera Feed", frame);
