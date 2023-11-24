@@ -145,6 +145,15 @@ int main(int argc, char* argv[]) {
           }
       }
 
+        std::cout << "Input MNIST Image" << "\n";
+        for(int i=0; i<28; ++i){
+          for(int j=0; j<28; ++j){
+            printf("%3d ", (int)input_vector[i][j]);
+          }
+          printf("\n");
+        }
+
+
       // Fill input buffers
       // TODO(user): Insert code to fill input tensors.
       // Note: The buffer of the input tensor with index `i` of type T can
