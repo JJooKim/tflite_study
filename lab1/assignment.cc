@@ -105,13 +105,12 @@ int main(int argc, char* argv[]) {
   tflite::PrintInterpreterState(interpreter.get()); // Debug print
 
 
-  cv::VideoCapture cap(0);
+  cv::VideoCapture video(0);
 
-  cap.set(cv::CAP_PROP_FRAME_WIDTH, 28);
-  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 28);
+
 
   cv::namedWindow("Camera Feed", cv::WINDOW_NORMAL);
-  if (!cap.isOpened())
+  if (!video.isOpened())
   {
     std::cout << "Unable to get video from the camera!" << std::endl;
     return -1;
@@ -256,7 +255,7 @@ int main(int argc, char* argv[]) {
 
   cv::destroyAllWindows();
   /*used to close all OpenCV windows created during the program's execution.*/
-  cap.release();
+  video.release();
   /*This line releases the camera resource held by the video object.*/
 
 
