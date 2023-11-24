@@ -117,87 +117,86 @@ int main(int argc, char* argv[]) {
 
   vector<vector<float>> input_vector(28, vector<float>(28, 0));
 
-
+  int frame_num = 0;
 
 
   while (video.read(frame))
   {
-    // //cv::imshow("Video feed", frame)
-    // // Check if the frame is empty
-    // if (frame.empty()) {
-    //     std::cerr << "Error: Empty frame." << std::endl;
-    //     break;
-    // }
+    cv::imshow("Video feed", frame)
 
-    cv::imshow("Video feed", frame);
-    // // Resize the frame to 28x28
-    // cv::resize(frame, frame, cv::Size(28, 28));
+    if (frame.empty()) {
+          std::cerr << "Error: Empty frame." << std::endl;
+          break;
+      }
 
-    // // Convert the frame to grayscale (if not already)
-    // if (frame.channels() > 1) {
-    //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-    // }
+      if (frame_num % 1000 == 0){
+      // Resize the frame to 28x28
+      cv::resize(frame, frame, cv::Size(28, 28));
 
-    // for (int i = 0; i < frame.rows; ++i) {
-    //     for (int j = 0; j < frame.cols; ++j) {
-    //         input_vector[i][j] = frame.at<float>(i, j);
-    //     }
-    // }
+      // Convert the frame to grayscale (if not already)
+      if (frame.channels() > 1) {
+          cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      }
 
-    // // Fill input buffers
-    // // TODO(user): Insert code to fill input tensors.
-    // // Note: The buffer of the input tensor with index `i` of type T can
-    // // be accessed with `T* input = interpreter->typed_input_tensor<T>(i);`
-    // auto input_tensor = interpreter->typed_input_tensor<float>(0); // Get input tensor's data field
-    // for(int i=0; i<28; ++i) // image rows
-    //   for(int j=0; j<28; ++j) // image cols
-    //     input_tensor[i * 28 + j] = input_vector[i][j] / 255.0; // normalize and copy input values.
-    
+      for (int i = 0; i < frame.rows; ++i) {
+          for (int j = 0; j < frame.cols; ++j) {
+              input_vector[i][j] = frame.at<float>(i, j);
+          }
+      }
 
-    // // Run inference
-    // TFLITE_MINIMAL_CHECK(interpreter->Invoke() == kTfLiteOk); // Do inference
-    // printf("\n\n=== Post-invoke Interpreter State ===\n");
-    // //tflite::PrintInterpreterState(interpreter.get());
+      // Fill input buffers
+      // TODO(user): Insert code to fill input tensors.
+      // Note: The buffer of the input tensor with index `i` of type T can
+      // be accessed with `T* input = interpreter->typed_input_tensor<T>(i);`
+      auto input_tensor = interpreter->typed_input_tensor<float>(0); // Get input tensor's data field
+      for(int i=0; i<28; ++i) // image rows
+        for(int j=0; j<28; ++j) // image cols
+          input_tensor[i * 28 + j] = input_vector[i][j] / 255.0; // normalize and copy input values.
+      
 
-    // // Read output buffers
-    // // TODO(user): Insert getting data out code.
-    // // Note: The buffer of the output tensor with index `i` of type T can
-    // // be accessed with `T* output = interpreter->typed_output_tensor<T>(i);`
-    // auto output_tensor = interpreter->typed_output_tensor<float>(0); // Get output tensor's data field
-    // for(int i=0; i<10; ++i)
-    //   printf("label : %d %.3f% \n", i, output_tensor[i] * 100);
+      // Run inference
+      TFLITE_MINIMAL_CHECK(interpreter->Invoke() == kTfLiteOk); // Do inference
+      printf("\n\n=== Post-invoke Interpreter State ===\n");
+      //tflite::PrintInterpreterState(interpreter.get());
 
-    // // int predict_num = std::distance(output_tensor.begin(), std::max_element(output_tensor.begin(), output_tensor.end()));
+      // Read output buffers
+      // TODO(user): Insert getting data out code.
+      // Note: The buffer of the output tensor with index `i` of type T can
+      // be accessed with `T* output = interpreter->typed_output_tensor<T>(i);`
+      auto output_tensor = interpreter->typed_output_tensor<float>(0); // Get output tensor's data field
+      for(int i=0; i<10; ++i)
+        printf("label : %d %.3f% \n", i, output_tensor[i] * 100);
 
-
-    // int predict_num = 0;
-    // float max_value = output_tensor[0];
-
-    // // Iterate over the elements to find the maximum value and its index
-    // for (int i = 1; i < 10; ++i) {
-    //   if (output_tensor[i] > max_value) {
-    //       max_value = output_tensor[i];
-    //       predict_num = i;
-    //   }
-    // } 
+      // int predict_num = std::distance(output_tensor.begin(), std::max_element(output_tensor.begin(), output_tensor.end()));
 
 
-    int k = 5;
+      int predict_num = 0;
+      float max_value = output_tensor[0];
 
-    clear_pin();
-    set_pin(k);
-    delay(1000);
-    
+      // Iterate over the elements to find the maximum value and its index
+      for (int i = 1; i < 10; ++i) {
+        if (output_tensor[i] > max_value) {
+            max_value = output_tensor[i];
+            predict_num = i;
+        }
+      } 
+
+
+      //int k = 5;
+
+      clear_pin();
+      set_pin(predict_num);
+    }  
     if (cv::waitKey(25) >= 0)
         break;
 
 
   }
 
-  // cv::destroyAllWindows();
-  // /*used to close all OpenCV windows created during the program's execution.*/
-  // video.release();
-  // /*This line releases the camera resource held by the video object.*/
+  cv::destroyAllWindows();
+  /*used to close all OpenCV windows created during the program's execution.*/
+  video.release();
+  /*This line releases the camera resource held by the video object.*/
 
 
 
