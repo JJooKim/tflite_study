@@ -125,7 +125,7 @@ int main(int argc, char* argv[]) {
 
   while (video.read(frame))
   { 
-
+    cv::resize(frame, frame, cv::Size(28, 28));
         // Print the raw pixel values
     for (int i = 0; i < frame.rows; ++i) {
         for (int j = 0; j < frame.cols; ++j) {
