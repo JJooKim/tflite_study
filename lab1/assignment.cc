@@ -131,33 +131,23 @@ int main(int argc, char* argv[]) {
       }
 
     if (frame_num % 100 == 0) {
-      // Resize the frame to 28x28
-      
-      // cv::resize(frame, frame, cv::Size(28, 28));
-
-      // //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      // cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
-      // // // Convert the frame to grayscale (if not already)
-      // // if (frame.channels() > 1) {
-      // //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      // // }
-
-            // Before any operations
-      std::cout << "Before operations - Min: " << cv::Mat(frame).reshape(1, 1).row(0).min() << ", Max: " << cv::Mat(frame).reshape(1, 1).row(0).max() << std::endl;
-
-      cv::resize(frame, frame, cv::Size(28, 28));
-      std::cout << "After resizing - Min: " << cv::Mat(frame).reshape(1, 1).row(0).min() << ", Max: " << cv::Mat(frame).reshape(1, 1).row(0).max() << std::endl;
-
       cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      std::cout << "After color conversion - Min: " << cv::Mat(frame).reshape(1, 1).row(0).min() << ", Max: " << cv::Mat(frame).reshape(1, 1).row(0).max() << std::endl;
+      
+      cv::resize(frame, frame, cv::Size(28, 28));
 
+      //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
       cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
-      std::cout << "After normalization - Min: " << cv::Mat(frame).reshape(1, 1).row(0).min() << ", Max: " << cv::Mat(frame).reshape(1, 1).row(0).max() << std::endl;
+      // // Convert the frame to grayscale (if not already)
+      // if (frame.channels() > 1) {
+      //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      // }
+
+    
 
 
       for (int i = 0; i < frame.rows; ++i) {
           for (int j = 0; j < frame.cols; ++j) {
-              input_vector[i][j] = frame.at<float>(i, j);
+              input_vector[i][j] = frame.at<int>(i, j);
           }
       }
 
