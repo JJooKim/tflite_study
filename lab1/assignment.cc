@@ -111,7 +111,7 @@ int main(int argc, char* argv[]) {
   cap.set(cv::CAP_PROP_FRAME_HEIGHT, 28);
 
   cv::namedWindow("Camera Feed", cv::WINDOW_NORMAL);
-  if (!video.isOpened())
+  if (!cap.isOpened())
   {
     std::cout << "Unable to get video from the camera!" << std::endl;
     return -1;
@@ -240,7 +240,7 @@ int main(int argc, char* argv[]) {
 
   cv::destroyAllWindows();
   /*used to close all OpenCV windows created during the program's execution.*/
-  video.release();
+  cap.release();
   /*This line releases the camera resource held by the video object.*/
 
 
