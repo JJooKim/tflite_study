@@ -130,21 +130,26 @@ int main(int argc, char* argv[]) {
     cap >> frame;
     // cv::imshow("Video feed", frame);
 
-    // Convert the frame to grayscale
-    cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-
-    // Resize the frame to 28x28
-    cv::resize(frame, frame, cv::Size(28, 28));
-//    cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX, CV_8UC1);
-
-    double minVal, maxVal;
-    cv::minMaxLoc(frame, &minVal, &maxVal);
-
     for (int i = 0; i < frame.rows; ++i) {
         for (int j = 0; j < frame.cols; ++j) {
-            frame.at<uchar>(i, j) = static_cast<uchar>(255.0 * (frame.at<uchar>(i, j) - minVal) / (maxVal - minVal));
+            input_vector[i][j] = frame.at<int>(i, j);
         }
     }
+  // Convert the frame to grayscale
+    //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+
+    // Resize the frame to 28x28
+    //cv::resize(frame, frame, cv::Size(28, 28));
+//    cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX, CV_8UC1);
+
+    // double minVal, maxVal;
+    // cv::minMaxLoc(frame, &minVal, &maxVal);
+
+    // for (int i = 0; i < frame.rows; ++i) {
+    //     for (int j = 0; j < frame.cols; ++j) {
+    //         frame.at<uchar>(i, j) = static_cast<uchar>(255.0 * (frame.at<uchar>(i, j) - minVal) / (maxVal - minVal));
+    //     }
+    // }
 
 
 
