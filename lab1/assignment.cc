@@ -20,7 +20,7 @@
 #define PC 1
 #define PD 16
 #define PE 15
-#define PF 8
+#define PF 7
 #define PG 9
 #define PDP 0
 
