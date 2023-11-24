@@ -125,55 +125,10 @@ int main(int argc, char* argv[]) {
 
   while (video.read(frame))
   { 
-    cv::resize(frame, frame, cv::Size(28, 28));
-    for (int i = 0; i < frame.rows; ++i) {
-      for (int j = 0; j < frame.cols; ++j) {
-          input_vector[i][j] = static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]);
-      }
-    }
-
-    std::cout << "Input MNIST Image" << "\n";
-    for(int i=0; i<28; ++i){
-      for(int j=0; j<28; ++j){
-        printf("%3d ", (int)input_vector[i][j]);
-      }
-      printf("\n");
-    }
-
-    
-    // for (int i = 0; i < frame.rows; ++i) {
-    //     for (int j = 0; j < frame.cols; ++j) {
-    //         std::cout << static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]) << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // cv::imshow("Video feed", frame);
-
-    // for (int i = 0; i < frame.rows; ++i) {
-    //     for (int j = 0; j < frame.cols; ++j) {
-    //         input_vector[i][j] = frame.at<int>(i, j);
-    //     }
-    // }
-  // Convert the frame to grayscale
-    //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-
-    // Resize the frame to 28x28
-    //cv::resize(frame, frame, cv::Size(28, 28));
-//    cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX, CV_8UC1);
-
-    // double minVal, maxVal;
-    // cv::minMaxLoc(frame, &minVal, &maxVal);
-
-    // for (int i = 0; i < frame.rows; ++i) {
-    //     for (int j = 0; j < frame.cols; ++j) {
-    //         frame.at<uchar>(i, j) = static_cast<uchar>(255.0 * (frame.at<uchar>(i, j) - minVal) / (maxVal - minVal));
-    //     }
-    // }
-
 
 
     // // Display the frame
-    // cv::imshow("Camera Feed", frame);
+    cv::imshow("Camera Feed", frame);
 
     ++frame_num; 
     if (frame.empty()) {
@@ -182,6 +137,20 @@ int main(int argc, char* argv[]) {
       }
 
     if (frame_num % 100 == 0) {
+      cv::resize(frame, frame, cv::Size(28, 28));
+      for (int i = 0; i < frame.rows; ++i) {
+        for (int j = 0; j < frame.cols; ++j) {
+            input_vector[i][j] = static_cast<int>(frame.at<cv::Vec3b>(i, j)[0]);
+        }
+      }
+
+      std::cout << "Input MNIST Image" << "\n";
+      for(int i=0; i<28; ++i){
+        for(int j=0; j<28; ++j){
+          printf("%3d ", (int)input_vector[i][j]);
+        }
+        printf("\n");
+      }
 
 
 
@@ -198,10 +167,10 @@ int main(int argc, char* argv[]) {
 
       // cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
       
-      cv::resize(frame, frame, cv::Size(28, 28));
+      //cv::resize(frame, frame, cv::Size(28, 28));
 
       // //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
+      //cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
       // // // Convert the frame to grayscale (if not already)
       // // if (frame.channels() > 1) {
       // //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
