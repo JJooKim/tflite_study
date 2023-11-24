@@ -105,8 +105,12 @@ int main(int argc, char* argv[]) {
   tflite::PrintInterpreterState(interpreter.get()); // Debug print
 
 
-  cv::VideoCapture video(0);
+  cv::VideoCapture cap(0);
 
+  cap.set(cv::CAP_PROP_FRAME_WIDTH, 28);
+  cap.set(cv::CAP_PROP_FRAME_HEIGHT, 28);
+
+  cv::namedWindow("Camera Feed", cv::WINDOW_NORMAL);
   if (!video.isOpened())
   {
     std::cout << "Unable to get video from the camera!" << std::endl;
@@ -120,9 +124,20 @@ int main(int argc, char* argv[]) {
   int frame_num = 0;
 
 
-  while (video.read(frame))
+  while (true)
   {
+    cv::Mat frame;
+    cap >> frame;
     cv::imshow("Video feed", frame);
+
+    // Convert the frame to grayscale
+    cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+
+    // Resize the frame to 28x28
+    cv::resize(frame, frame, cv::Size(28, 28));
+
+    // Display the frame
+    cv::imshow("Camera Feed", frame);
 
     ++frame_num; 
     if (frame.empty()) {
@@ -131,16 +146,30 @@ int main(int argc, char* argv[]) {
       }
 
     if (frame_num % 100 == 0) {
-      cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      
-      cv::resize(frame, frame, cv::Size(28, 28));
 
-      //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
-      // // Convert the frame to grayscale (if not already)
-      // if (frame.channels() > 1) {
-      //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
-      // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      
+      // cv::resize(frame, frame, cv::Size(28, 28));
+
+      // //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      // cv::normalize(frame, frame, 0, 255, cv::NORM_MINMAX);
+      // // // Convert the frame to grayscale (if not already)
+      // // if (frame.channels() > 1) {
+      // //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
+      // // }
 
     
 
