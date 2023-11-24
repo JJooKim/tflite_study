@@ -117,24 +117,23 @@ int main(int argc, char* argv[]) {
     return -1;
   }  
 
-  cv::Mat frame;
+  cv::Mat frame(28, 28, CV_8U);
 
   vector<vector<float>> input_vector(28, vector<float>(28, 0));
 
   int frame_num = 0;
 
 
-  while (true)
-  {
-    cv::Mat frame;
-    cap >> frame;
+  while (video.read(frame))
+  { 
+
     // cv::imshow("Video feed", frame);
 
-    for (int i = 0; i < frame.rows; ++i) {
-        for (int j = 0; j < frame.cols; ++j) {
-            input_vector[i][j] = frame.at<int>(i, j);
-        }
-    }
+    // for (int i = 0; i < frame.rows; ++i) {
+    //     for (int j = 0; j < frame.cols; ++j) {
+    //         input_vector[i][j] = frame.at<int>(i, j);
+    //     }
+    // }
   // Convert the frame to grayscale
     //cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
 
