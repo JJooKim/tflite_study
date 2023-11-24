@@ -130,7 +130,7 @@ int main(int argc, char* argv[]) {
           break;
       }
 
-      if (frame_num % 1000 == 0){
+    if (frame_num % 100 == 0) {
       // Resize the frame to 28x28
       cv::resize(frame, frame, cv::Size(28, 28));
 
