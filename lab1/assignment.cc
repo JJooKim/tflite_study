@@ -122,7 +122,7 @@ int main(int argc, char* argv[]) {
 
   while (video.read(frame))
   {
-    cv::imshow("Video feed", frame)
+    cv::imshow("Video feed", frame);
 
     if (frame.empty()) {
           std::cerr << "Error: Empty frame." << std::endl;
