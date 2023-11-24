@@ -142,6 +142,8 @@ int main(int argc, char* argv[]) {
       //     cv::cvtColor(frame, frame, cv::COLOR_BGR2GRAY);
       // }
 
+       frame.convertTo(frame, CV_32S);
+
       for (int i = 0; i < frame.rows; ++i) {
           for (int j = 0; j < frame.cols; ++j) {
               input_vector[i][j] = frame.at<float>(i, j);
